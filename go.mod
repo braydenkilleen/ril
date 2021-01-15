@@ -13,6 +13,7 @@ require (
 	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/klauspost/compress v1.11.7 // indirect
 	github.com/pelletier/go-toml v1.8.1 // indirect
+	github.com/stretchr/testify v1.4.0
 	github.com/valyala/fasthttp v1.19.0 // indirect
 	golang.org/x/sys v0.0.0-20210113181707-4bcb84eeeb78 // indirect
 )
