@@ -1,18 +1,19 @@
-package models
+package model
 
 import (
 	"github.com/braydenkilleen/ril/database"
 	"github.com/gofiber/fiber/v2"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
+// Bookmark ...
 type Bookmark struct {
 	gorm.Model
-	Title string `json:"title"`
-	URL   string `json:"url"`
+	Title string `gorm:"not null" json:"title"`
+	URL   string `gorm:"unique_index;not null" json:"url"`
 }
 
+// GetBookmarks ...
 func GetBookmarks(c *fiber.Ctx) error {
 	db := database.DBConn
 	var bookmarks []Bookmark
@@ -20,6 +21,7 @@ func GetBookmarks(c *fiber.Ctx) error {
 	return c.JSON(bookmarks)
 }
 
+// GetBookmark ...
 func GetBookmark(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
@@ -28,6 +30,7 @@ func GetBookmark(c *fiber.Ctx) error {
 	return c.JSON(bookmark)
 }
 
+// NewBookmark ...
 func NewBookmark(c *fiber.Ctx) error {
 	db := database.DBConn
 	bookmark := new(Bookmark)
@@ -38,6 +41,7 @@ func NewBookmark(c *fiber.Ctx) error {
 	return c.JSON(bookmark)
 }
 
+// DeleteBookmark ...
 func DeleteBookmark(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
