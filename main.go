@@ -28,6 +28,11 @@ func setupRoutes(app *fiber.App) {
 	app.Get("/api/v1/bookmarks/:id", models.GetBookmark)
 	app.Post("/api/v1/bookmarks", models.NewBookmark)
 	app.Delete("/api/v1/bookmarks/:id", models.DeleteBookmark)
+
+	// 404 Handler
+	app.Use(func(c *fiber.Ctx) error {
+		return c.SendStatus(404)
+	})
 }
 
 func main() {
